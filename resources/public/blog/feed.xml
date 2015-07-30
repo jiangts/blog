@@ -15,8 +15,38 @@ http://blogawesome.com/
 This blog is awesome
 </description>
 <lastBuildDate>
-Thu, 30 Jul 2015 16:09:46 -0700
+Thu, 30 Jul 2015 16:33:48 -0700
 </lastBuildDate>
+<item>
+<guid>
+http://blogawesome.com/blog/posts/2015-7-30-setting-up.html
+</guid>
+<link>
+http://blogawesome.com/blog/posts/2015-7-30-setting-up.html
+</link>
+<title>
+New Blog
+</title>
+<description>
+&lt;p&gt;After writing quite a few &quot;private blogs&quot; (translate: journal entries) over the years, I've decided to start a public blog on Github.&lt;/p&gt;&lt;p&gt;I'm using &lt;a href='http://cryogenweb.org/'&gt;Cryogen&lt;/a&gt; (rather than Jekyll or Hugo or whatever million other options there are out there) because I fell in love with Clojure. The setup was simple. Just run&lt;/p&gt;&lt;pre&gt;&lt;code&gt;$ lein new cryogen blog
+$ cd blog
+$ lein ring server
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will get you a static site up and running.&lt;/p&gt;&lt;p&gt;Now, instead of following the advice on setting up a Github page on the cryogen docs, I did the following (which I found easier to maintain):&lt;/p&gt;&lt;pre&gt;&lt;code&gt;$ git add .
+$ git commit -m &amp;quot;initial commit&amp;quot; # ensure git knows about your subtree dir
+$ git subtree push --prefix resources/public/blog origin gh-pages
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can also create a little shell script (found &lt;a href='https://gist.github.com/cobyism/4730490'&gt;here&lt;/a&gt;) to help you do the deploy to gh-pages process.&lt;/p&gt;&lt;pre&gt;&lt;code&gt;#!/bin/sh
+if &amp;#91; -z &amp;quot;$1&amp;quot; &amp;#93;
+then
+  echo &amp;quot;Which folder do you want to deploy to GitHub Pages?&amp;quot;
+  exit 1
+fi
+git subtree push --prefix $1 origin gh-pages
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and in the future you can just run the script and pass in the proper directory!&lt;h2&gt;&lt;/h2&gt;&lt;/p&gt;&lt;p&gt;Depending on how life goes, hopefully you'll be seeing more posts on coding, math, life at Stanford etc. in the future!&lt;/p&gt;
+</description>
+<pubDate>
+Thu, 30 Jul 2015 00:00:00 -0700
+</pubDate>
+</item>
 <item>
 <guid>
 http://blogawesome.com/blog/posts/2014-12-11-docs.html
