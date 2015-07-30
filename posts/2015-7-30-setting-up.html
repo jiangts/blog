@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>My Awesome Blog: Tags</title>
+    <title>My Awesome Blog: New Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet'
           type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
-    <link href="css/screen.css" rel="stylesheet" type="text/css" />
+    <link href="../css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -50,20 +50,43 @@
         <div class="col-lg-9">
             <div id="content">
                 
-<div id="tags-page">
-    <div id="page-header">
-        <h2>Tags</h2>
+<div id="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">July 30, 2015</div>
+        
+    </div>
+    <h2>New Blog</h2>
+</div>
+<div>
+    
+    <p>After writing quite a few "private blogs" (translate: journal entries) over the years, I've decided to start a public blog on Github.</p><p>I'm using <a href='http://cryogenweb.org/'>Cryogen</a> (rather than Jekyll or Hugo or whatever million other options there are out there) because I fell in love with Clojure. The setup was simple. Just run</p><pre><code>$ lein new cryogen blog
+$ cd blog
+$ lein ring server
+</code></pre><p>This will get you a static site up and running.</p><p>Now, instead of following the advice on setting up a Github page on the cryogen docs, I did the following (which I found easier to maintain):</p><pre><code>$ git add .
+$ git commit -m &quot;initial commit&quot; # ensure git knows about your subtree dir
+$ git subtree push --prefix resources/public/blog origin gh-pages
+</code></pre><p>You can also create a little shell script (found <a href='https://gist.github.com/cobyism/4730490'>here</a>) to help you do the deploy to gh-pages process.</p><pre><code>#!/bin/sh
+if &#91; -z &quot;$1&quot; &#93;
+then
+  echo &quot;Which folder do you want to deploy to GitHub Pages?&quot;
+  exit 1
+fi
+git subtree push --prefix $1 origin gh-pages
+</code></pre><p>and in the future you can just run the script and pass in the proper directory!<h2></h2></p><p>Depending on how life goes, hopefully you'll be seeing more posts on coding, math, life at Stanford etc. in the future!</p>
+</div>
+
+
+    <div id="prev-next">
+        
+        
+        <a class="right" href="/blog/posts/2014-12-11-docs.html">Using Cryogen &raquo;</a>
+        
     </div>
 
-    <ul>
-        
-        <li><a href="/blog/tags/not fetch.html">not fetch</a></li>
-        
-        <li><a href="/blog/tags/very fetch.html">very fetch</a></li>
-        
-        <li><a href="/blog/tags/cryogen.html">cryogen</a></li>
-        
-    </ul>
+    
+
+
 </div>
 
             </div>
@@ -115,7 +138,7 @@
 </div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="js/highlight.pack.js" type="text/javascript"></script>
+<script src="../js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
