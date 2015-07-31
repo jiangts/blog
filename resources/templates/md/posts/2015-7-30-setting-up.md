@@ -32,10 +32,10 @@ and in the future you can just run the script and pass in the proper directory!
 
 <hr>
 
-### Customizing the template
+### Customizing the theme
 
 I'm a huge fan of David Nolen's talks and his [blog](http://swannodette.github.io), and having found another Cryogen [user](http://blog.jethrokuan.com/) 
-who was uh, heavily inspired by (stole?) his template, I decided to give it a go as well. The template looks super simple, which is fitting for any Clojurist :).
+who was uh, heavily inspired by (stole?) his blog's style, I decided to give it a go as well. The theme looks super simple, which is fitting for any Clojurist :).
 
 The main hurdle I came across was when dealing with Selmer for the first time. Essentially, the issue is that the "tags" button should only be 
 highlighted when the url is "/blog/tags.html", and I didn't know how to get the current URL.
