@@ -15,7 +15,10 @@
                 <nav id="header">
                     <ul class="nav">
                         <li class="active"><a href="/blog/index.html">jiangts</a></li>
-                        <li ><a href="/blog/archives.html">archives</a></li>
+                        <li ><a href="/blog/archives.html">archive</a></li>
+                        <li >
+                            <a href="/blog/tags.html">tags</a>
+                        </li>
                         
                         <li >
                             <a href="/blog/pages/about.html">About</a>
@@ -46,14 +49,9 @@ then
   exit 1
 fi
 git subtree push --prefix $1 origin gh-pages
-</code></pre><p>and in the future you can just run the script and pass in the proper directory!<h2></h2></p><p>Depending on how life goes, hopefully you'll be seeing more posts on coding, math, life at Stanford etc. in the future!</p>
+</code></pre><p>and in the future you can just run the script and pass in the proper directory!</p><p><hr></p><h3><a name="customizing&#95;the&#95;template"></a>Customizing the template</h3><p>I'm a huge fan of David Nolen's talks and his <a href='http://swannodette.github.io'>blog</a>, and having found another Cryogen <a href='http://blog.jethrokuan.com/'>user</a>  who was uh, heavily inspired by (stole?) his template, I decided to give it a go as well. The template looks super simple, which is fitting for any Clojurist :).</p><p>The main hurdle I came across was when dealing with Selmer for the first time. Essentially, the issue is that the "tags" button should only be  highlighted when the url is "/blog/tags.html", and I didn't know how to get the current URL.</p><p>After fumbling around for a bit, (ok, like 40 minutes), I finally decided to "be brave" (translate: not be a noob) and  <a href='https://github.com/cryogen-project/cryogen-core/blob/master/src/cryogen&#95;core/compiler.clj'>dig the source</a> to find what  parameters where exactly being passed to the template. And there it was, <code>uri</code> (doh!).</p><p>So it turns out things are pretty simple. God bless open source :).</p><p><hr></p><h3><a name="complaints&#95;about&#95;cryogen"></a>Complaints about Cryogen</h3><p>It appears that the markdown parser doesn't support the full markdown specification. For example, the horizontal lines had to be created with <code>&lt;hr&gt;</code> rather than <code>---</code>. Not a huge deal, but not so nice.</p><p>Also, creating a new theme was a bit weird as the structure doesn't follow the provided theme structures.  (to make a new theme I need to have a <code>dosynctemplates</code> folder in addition to a <code>dosync</code> folder?).</p><p>I'll try to submit some pull requests at some point if time permits...</p><p>But otherwise, a pleasant experience.</p><p><hr></p><p>Depending on how life goes, hopefully we'll be seeing more posts on coding, math, life at Stanford etc. in the future!</p>
 </div>
 
-
-<div id="tags">
-    <b>Tags: </b>
-    
-</div>
 
 
     <div id="prev-next">
@@ -72,7 +70,12 @@ git subtree push --prefix $1 origin gh-pages
             </div>
             <footer>
                 Copyright &copy; 2015 Allan Jiang<br>
-                Powered by <a src="https://github.com/lacarmen/cryogen">Cryogen</a>
+                <span>
+                    <a href="https://github.com/jiangts">Github</a> &nbsp;
+                    <a href="https://linkedin.com/in/jiangts">LinkedIn</a> &nbsp;
+                    <a href="https://twitter.com/jiangts">Twitter</a> &nbsp;
+                </span><br>
+                Powered by <a href="https://github.com/lacarmen/cryogen">Cryogen</a>
             </footer>
         </div>
 

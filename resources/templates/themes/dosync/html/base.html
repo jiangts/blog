@@ -15,7 +15,10 @@
                 <nav id="header">
                     <ul class="nav">
                         <li class="active"><a href="{{index-uri}}">{{title}}</a></li>
-                        <li {% if archives %} class="active" {% endif %}><a href="{{archives-uri}}">archives</a></li>
+                        <li {% if archives %} class="active" {% endif %}><a href="{{archives-uri}}">archive</a></li>
+                        <li {% ifequal uri tags-uri %} class="active" {% endifequal %}>
+                            <a href="{{tags-uri}}">tags</a>
+                        </li>
                         {% for nav-page in navbar-pages %}
                         <li {%ifequal page.uri nav-page.uri %} class="active" {% endifequal %}>
                             <a href="{{nav-page.uri}}">{{nav-page.title}}</a>
@@ -30,7 +33,12 @@
             </div>
             <footer>
                 Copyright &copy; 2015 {{author}}<br>
-                Powered by <a src="https://github.com/lacarmen/cryogen">Cryogen</a>
+                <span>
+                    <a href="https://github.com/jiangts">Github</a> &nbsp;
+                    <a href="https://linkedin.com/in/jiangts">LinkedIn</a> &nbsp;
+                    <a href="https://twitter.com/jiangts">Twitter</a> &nbsp;
+                </span><br>
+                Powered by <a href="https://github.com/lacarmen/cryogen">Cryogen</a>
             </footer>
         </div>
 
