@@ -1,7 +1,7 @@
-{:site-title         "My Awesome Blog"
- :author             "Bob Bobbert"
- :description        "This blog is awesome"
- :site-url           "http://blogawesome.com/"
+{:site-title         "jiangts"
+ :author             "Allan Jiang"
+ :description        ""
+ :site-url           "http://jiangts.github.io/blog"
  :post-root          "posts"
  :tag-root           "tags"
  :page-root          "pages"
@@ -12,7 +12,7 @@
  :post-date-format   "yyyy-MM-dd"
  :sass-src           nil
  :sass-dest          nil
- :theme              "blue"
+ :theme              "dosync"
  :resources          ["img"]
  :keep-files         [".git"]
  :disqus?            false
@@ -20,4 +20,5 @@
  :ignored-files      [#"\.#.*" #".*\.swp$"]
  :posts-per-page     5
  :blocks-per-preview 2
- :previews?          false}
+ :previews?          false
+ :counter            1}

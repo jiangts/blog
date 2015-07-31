@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{title}}{% block subtitle %}{% endblock %}</title>
+        <script src="//use.typekit.net/hhk0ocl.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+        {% style "css/normalize.css" %}
+        {% style "css/skeleton.css" %}
+        {% style "css/custom.css" %}
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    </head>
+    <body>
+        <div class="container">
+                <nav id="header">
+                    <ul class="nav">
+                        <li class="active"><a href="{{index-uri}}">{{title}}</a></li>
+                        <li {% if archives %} class="active" {% endif %}><a href="{{archives-uri}}">archives</a></li>
+                        {% for nav-page in navbar-pages %}
+                        <li {%ifequal page.uri nav-page.uri %} class="active" {% endifequal %}>
+                            <a href="{{nav-page.uri}}">{{nav-page.title}}</a>
+                        </li>
+                        {% endfor %}
+                        <li><a href="{{rss-uri}}">RSS</a></li>
+                    </ul>
+                </nav>
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <footer>
+                Copyright &copy; 2015 {{author}}<br>
+                Powered by <a src="https://github.com/lacarmen/cryogen">Cryogen</a>
+            </footer>
+        </div>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        {% script "js/highlight.pack.js" %}
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

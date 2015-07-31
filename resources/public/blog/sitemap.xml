@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url>
 <loc>
-http://blogawesome.com/blog/404.html
+http://jiangts.github.io/blogblog/404.html
 </loc>
 <lastmod>
 2015-07-30
@@ -10,7 +10,7 @@ http://blogawesome.com/blog/404.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/archives.html
+http://jiangts.github.io/blogblog/archives.html
 </loc>
 <lastmod>
 2015-07-30
@@ -18,7 +18,7 @@ http://blogawesome.com/blog/archives.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/index.html
+http://jiangts.github.io/blogblog/index.html
 </loc>
 <lastmod>
 2015-07-30
@@ -26,7 +26,7 @@ http://blogawesome.com/blog/index.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/pages/about.html
+http://jiangts.github.io/blogblog/pages/about.html
 </loc>
 <lastmod>
 2015-07-30
@@ -34,7 +34,7 @@ http://blogawesome.com/blog/pages/about.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/pages/another-page.html
+http://jiangts.github.io/blogblog/posts/2015-7-29-docs.html
 </loc>
 <lastmod>
 2015-07-30
@@ -42,7 +42,7 @@ http://blogawesome.com/blog/pages/another-page.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/posts/2014-03-10-first-post.html
+http://jiangts.github.io/blogblog/posts/2015-7-30-setting-up.html
 </loc>
 <lastmod>
 2015-07-30
@@ -50,7 +50,7 @@ http://blogawesome.com/blog/posts/2014-03-10-first-post.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/posts/2014-11-04-second-post.html
+http://jiangts.github.io/blogblog/tags/cryogen.html
 </loc>
 <lastmod>
 2015-07-30
@@ -58,47 +58,7 @@ http://blogawesome.com/blog/posts/2014-11-04-second-post.html
 </url>
 <url>
 <loc>
-http://blogawesome.com/blog/posts/2014-12-11-docs.html
-</loc>
-<lastmod>
-2015-07-30
-</lastmod>
-</url>
-<url>
-<loc>
-http://blogawesome.com/blog/posts/2015-7-30-setting-up.html
-</loc>
-<lastmod>
-2015-07-30
-</lastmod>
-</url>
-<url>
-<loc>
-http://blogawesome.com/blog/tags/cryogen.html
-</loc>
-<lastmod>
-2015-07-30
-</lastmod>
-</url>
-<url>
-<loc>
-http://blogawesome.com/blog/tags/not fetch.html
-</loc>
-<lastmod>
-2015-07-30
-</lastmod>
-</url>
-<url>
-<loc>
-http://blogawesome.com/blog/tags/very fetch.html
-</loc>
-<lastmod>
-2015-07-30
-</lastmod>
-</url>
-<url>
-<loc>
-http://blogawesome.com/blog/tags.html
+http://jiangts.github.io/blogblog/tags.html
 </loc>
 <lastmod>
 2015-07-30

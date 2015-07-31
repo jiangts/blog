@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>
 <channel>
-<atom:link href='http://blogawesome.com/' rel='self' type='application/rss+xml'/>
+<atom:link href='http://jiangts.github.io/blog' rel='self' type='application/rss+xml'/>
 <generator>
 clj-rss
 </generator>
 <title>
-My Awesome Blog
+jiangts
 </title>
 <link>
-http://blogawesome.com/
+http://jiangts.github.io/blog
 </link>
 <description>
-This blog is awesome
+
 </description>
 <lastBuildDate>
-Thu, 30 Jul 2015 16:33:48 -0700
+Thu, 30 Jul 2015 18:44:40 -0700
 </lastBuildDate>
 <item>
 <guid>
-http://blogawesome.com/blog/posts/2014-12-11-docs.html
+http://jiangts.github.io/blog/blog/posts/2015-7-29-docs.html
 </guid>
 <link>
-http://blogawesome.com/blog/posts/2014-12-11-docs.html
+http://jiangts.github.io/blog/blog/posts/2015-7-29-docs.html
 </link>
 <title>
 Using Cryogen
@@ -99,7 +99,7 @@ vestibulum tortor est nec nisi.
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Simply set &lt;code&gt;yoursite.com&lt;/code&gt; to the domain of your site in the above configuration and ensure the static content is available at &lt;code&gt;/var/blog/&lt;/code&gt;. Finally, place your custom error page in the &lt;code&gt;/var/blog/404.html&lt;/code&gt; file.&lt;/p&gt;&lt;h2&gt;&lt;a name=&quot;some&amp;#95;sites&amp;#95;made&amp;#95;with&amp;#95;cryogen&quot;&gt;&lt;/a&gt;Some Sites Made With Cryogen&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='http://carmenla.me/blog/index.html'&gt;My personal blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://cryogenweb.org'&gt;Cryogen Documentation Site&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://yogthos.net/'&gt;Yogthos blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://www.clojure.tn'&gt;Clojure :in Tunisia&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://dl1ely.github.io'&gt;dl1ely.github.io&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://jonase.github.io/nil-recur'&gt;nil/recur&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://tangrammer.github.io/'&gt;on the clojure move&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://blog.jethrokuan.com/'&gt;cognizance&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 </description>
 <pubDate>
-Thu, 11 Dec 2014 00:00:00 -0800
+Wed, 29 Jul 2015 00:00:00 -0700
 </pubDate>
 </item>
 </channel>
