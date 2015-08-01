@@ -8,15 +8,15 @@
     </div>
     {% endif %}
 
-    <div id="prev-next">
+    <div id="prev-next" class="col-md-12">
         {% if post.prev %}
-        <a href="{{post.prev.uri}}">&laquo; {{post.prev.title}}</a>
+        <a class="float-left" href="{{post.prev.uri}}">&laquo; {{post.prev.title}}</a>
         {% endif %}
         {% if all post.prev post.next %}
         ||
         {% endif %}
         {% if post.next %}
-        <a class="pull-right" href="{{post.next.uri}}">{{post.next.title}} &raquo;</a>
+        <a class="float-right" href="{{post.next.uri}}">{{post.next.title}} &raquo;</a>
         {% endif %}
     </div>
 </div>

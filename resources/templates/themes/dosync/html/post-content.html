@@ -1,6 +1,7 @@
 <div id="post-header">
     <h2>{{post.title}}</h2>
     <div class="date">{{post.date|date:longDate}}</div>
+    <hr>
 </div>
 <div>
     {% if post.toc %}{{post.toc|safe}}{% endif %}
