@@ -49,6 +49,10 @@ a {
   margin: 0;
 }
 
+#post-header hr {
+  margin: 1rem 0rem;
+}
+
 #content {
   /* text-align: justify; */
   margin-top: 1.2rem;
@@ -73,6 +77,14 @@ a {
 
 blockquote {
   font-style: italic;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 
