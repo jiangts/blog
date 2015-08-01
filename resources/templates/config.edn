@@ -21,4 +21,4 @@
  :posts-per-page     5
  :blocks-per-preview 2
  :previews?          false
- :counter            1}
+ :counter            0}

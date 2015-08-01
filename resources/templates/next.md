@@ -5,3 +5,11 @@
 5. Include mathjax
 
 Swimming was always the constant for me. I swam 3100 meters on the third day back in the pool at the SF YMCA. Glad I had the energy to do that.
+
+Post about Math Research
+about Jackson Lab Research
+about Working at IBM/Sign-out project
+about Carline Project
+about MCM and related
+about NCSSM
+about StoryBehind? Knapsack?

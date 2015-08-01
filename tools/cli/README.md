@@ -1,6 +1,27 @@
 # cli
 
-FIXME: Write a one-line description of your library/project.
+Setting up the nodejs repl:
+
+    lein repl
+    ...
+    user=> (require
+      #_=>   '[cljs.repl :as repl]
+      #_=>   '[cljs.repl.node :as node])
+    nil
+    user=> (cemerick.piggieback/cljs-repl (node/repl-env))
+
+To get it to work in vim:
+
+In the repl:
+
+    user=> (require '[cljs.repl.node :as node])
+
+In vim:
+
+    :Piggieback (cljs.repl.node/repl-env)
+
+~~Issue with vim-fireplace: https://github.com/tpope/vim-fireplace/issues/220~~
+Update: Just update to the latest vim fireplace!
 
 ## Overview
 
@@ -25,7 +46,7 @@ installable via brew):
 To get source map support in the Node REPL:
 
     lein npm install
-    
+
 To start an browser REPL:
     
     1. Uncomment the following line in src/[project name]/core.cljs: 
@@ -34,14 +55,14 @@ To start an browser REPL:
     4. Browse to http://localhost:9000 (you should see Hello World! in web console)
     5. (back to step 3) you should now see the REPL prompt: ClojureScript:cljs.user> 
     6. You may now evaluate ClojureScript statements in the browser context. 
-    
+
 For more info using the browser as a REPL environment, see
 [this](https://github.com/clojure/clojurescript/wiki/The-REPL-and-Evaluation-Environments#browser-as-evaluation-environment).
-    
+
 Clean project specific out:
 
     lein clean
-     
+
 To build a single release artifact:
 
     ./scripts/release

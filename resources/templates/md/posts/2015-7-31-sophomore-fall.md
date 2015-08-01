@@ -14,11 +14,11 @@ fall quarter are:
       it in class. Having watched some videos out of curiosity, I can say that
       they're really fascinating, and the professors do a great job detailing
       the internet, one of the greatest engineering feats of modern technology.
-      The class is known to be one of the harder CS classes at Stanford though,
-      because you literally have to implement a lot of networking protocols in
-      C. I think the first assignment is writing a TCP server from a provided
-      bare-bones implementation of a UDP server. -- Really excited to take this
-      one!
+      The class is known to be one of the harder(est?) CS classes at Stanford
+      though, because you literally have to implement a lot of networking
+      protocols in C. I think the first assignment is writing a TCP server from
+      a provided bare-bones implementation of a UDP server. -- Really excited to
+      take this one!
 - CS251 - Bitcoin
   - This one is taught by Dan Boneh, (one of?) the world's greatest expert(s) on
       computer security. I'm taking this one probably half because I want to
