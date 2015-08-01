@@ -7,6 +7,7 @@
     {:main 'cli.core
      :output-to "out/cli.js"
      :output-dir "out"
+     :target :nodejs
      :verbose true})
   (println "... done. Elapsed" (/ (- (System/nanoTime) start) 1e9) "seconds"))
 

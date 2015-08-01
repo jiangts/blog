@@ -2,7 +2,10 @@
 
 (enable-console-print!)
 
-(println "Hello world!")
-
-(def fs (js/require "fs"))
+(def fs (js/require "fs-extra"))
 (.readdirSync fs ".")
+
+(defn -main  [& args]
+  (println "Hello again"))
+
+(set! *main-cli-fn* -main)

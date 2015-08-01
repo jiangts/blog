@@ -3,4 +3,5 @@
 (b/watch "src"
   {:main 'cli.core
    :output-to "out/cli.js"
-   :output-dir "out"})
+   :output-dir "out"
+   :target :nodejs})
