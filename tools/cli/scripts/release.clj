@@ -7,5 +7,7 @@
     {:output-to "release/cli.js"
      :output-dir "release"
      :optimizations :advanced
-     :verbose true})
+     :target :nodejs
+     :verbose true
+     :externs ["externs.js"]})
   (println "... done. Elapsed" (/ (- (System/nanoTime) start) 1e9) "seconds"))

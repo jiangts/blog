@@ -4,8 +4,10 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "0.0-3308" :classifier "aot"
                   :exclusion [org.clojure/data.json]]
-                 [org.clojure/data.json "0.2.6" :classifier "aot"]]
-  :plugins  [[lein-npm "0.5.0"]]
+                 [org.clojure/data.json "0.2.6" :classifier "aot"]
+                 [com.andrewmcveigh/cljs-time "0.3.10"]]
+  :plugins  [[lein-npm "0.5.0"]
+             [lein-externs "0.1.3"]]
   :jvm-opts ^:replace ["-Xmx1g" "-server"]
   :node-dependencies [[source-map-support "0.3.2"]]
   :source-paths ["src" "target/classes"]
