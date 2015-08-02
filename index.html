@@ -31,31 +31,15 @@
                 
 <div id="post">
     <div id="post-header">
-    <h2>ClojureScript Node.js vim repl</h2>
+    <h2>Ryan, Jimmy, Startup Stories</h2>
     <div class="date">August 1, 2015</div>
     <hr>
 </div>
 <div>
     
-    <p>There are lots of great "plug-and-play" setups for ClojureScript in the browser, like Figwheel and Chestnut. However, getting a good REPL environment for ClojureScript targeting Node.js seemed quite under-documented. After consulting numerous resources (many of which, uh, how should I say, may or may not have been really outdated), here's how I did it:</p><ol><li>Get a starter ClojureScript Project<pre><code>$ lein new mies replicious
-</code></pre></li><li>Follow basic directions in the README.md<ul><li>in particular, run <code>lein npm install</code></li><li>also just a note: if you try to run <code>./scripts/repl</code> as advertised in the      README it won't work! To fix it, you need to alter the      <code>./scripts/repl.clj</code> file by changing the function call from `(repl/repl*      ...)<code> to </code>(repl/repl ...)`.</li></ul></li><li>Include Cemerick's <a href='https://github.com/cemerick/piggieback'>piggieback</a><ul><li>Add this snippet to your <code>project.clj</code><pre><code>:profiles  {:dev  {:dependencies  &#91;&#91;com.cemerick/piggieback &quot;0.2.1&quot;&#93;
-                                     &#91;org.clojure/tools.nrepl &quot;0.2.10&quot;&#93;&#93;
-                     :repl-options  {:nrepl-middleware  &#91;cemerick.piggieback/wrap-cljs-repl&#93;}}}
-</code></pre></li></ul></li><li>In the repl, do the following:<pre><code>$ lein repl
-...
-user=&gt; &#40;require '&#91;cljs.repl.node :as node&#93;&#41;
-nil
-</code></pre></li><li>In fireplace, run<pre><code>:Piggieback &#40;node/repl-env&#41;
-</code></pre></li><li>Try it out!<ul><li>One last roadblock I encountered was the issue described      <a href='https://github.com/tpope/vim-fireplace/issues/220'>here</a>.</li><li>I fixed it by simply updating to the latest version of fireplace :) (almost      too easy!).</li></ul></li></ol><p><hr></p><p>I think this is actually the first time I've successfully gotten fireplace to connect to a ClojureScript repl. I remember having some trouble connecting fireplace to the browser repls provided by figwheel/chestnut, so in those environments, I just live reload stuff and observe the output of the web console. Fast enough, but I think this will be even better :).</p>
+    <p>Hello World</p>
 </div>
 
-
-<div id="tags">
-    <b>Tags: </b>
-    
-    <a href="/blog/tags/ClojureScript.html">ClojureScript</a>
-    
-</div>
 
 
     
@@ -64,7 +48,7 @@ nil
         
         
         
-        <a class="float-right" href="/blog/posts/2015-7-31-sophomore-fall.html">Sophomore Fall &raquo;</a>
+        <a class="float-right" href="/blog/posts/2015-8-1-vim-nodejs-repl.html">ClojureScript Node.js vim repl &raquo;</a>
         
     </div>
 </div>
