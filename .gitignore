@@ -10,5 +10,11 @@ pom.xml.asc
 .lein-plugins/
 .lein-failures
 .DS_Store
+
 private/
-*.private.html
+*private.md
+*staging.md
+*private.html
+*staging.html
+enc/
+*enc
