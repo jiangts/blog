@@ -15,8 +15,235 @@ http://jiangts.github.io/blog
 
 </description>
 <lastBuildDate>
-Sat, 01 Aug 2015 22:00:47 -0700
+Sun, 09 Aug 2015 16:36:14 -0700
 </lastBuildDate>
+<item>
+<guid>
+http://jiangts.github.io/blog/blog/posts/2015-8-6-clojure-algo.html
+</guid>
+<link>
+http://jiangts.github.io/blog/blog/posts/2015-8-6-clojure-algo.html
+</link>
+<title>
+Clojure Recursive Backtracking
+</title>
+<description>
+&lt;p&gt;I recently shadowed an interview with the following interview question:&lt;/p&gt;&lt;p&gt;Suppose you are given a vector of strings, such as&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#91;&amp;quot;t&amp;#42;itt&amp;#42;r&amp;quot; &amp;quot;&amp;#42;s&amp;quot; &amp;quot;&amp;#42;wesome&amp;quot;&amp;#93;
+ &lt;/code&gt;&lt;/pre&gt; a &quot;bag o' characters&quot;, such as&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#91;\a \b \c \d \e \f \g \h \i \j \k \l \m \n \o \p \q \r \s \t \u \v \w \x \y \z&amp;#93;
+ &lt;/code&gt;&lt;/pre&gt; and a list of valid words, such as the ones found in &lt;code&gt;/usr/dict/words&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Your task is to find &lt;strong&gt;all&lt;/strong&gt; the ways to replace the &lt;code&gt;&amp;#42;&lt;/code&gt; characters (in the vector of strings) with ones from the bag o' characters to create valid words. Each character in the &quot;bag&quot; can only be used once.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Before you continue&lt;/strong&gt;: try solving this on your own (even though I've given away that it's backtracking recursion)! It's a cute little problem. Also, the rest of the post is written with the assumption that you've given the problem some thought, so...&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;journey&amp;#95;to&amp;#95;a&amp;#95;solution&quot;&gt;&lt;/a&gt;Journey to a Solution&lt;/h3&gt;&lt;p&gt;Upon hearing this problem and trying to solve it during the interview, I was dismayed to realize that I essentially forgot recursive backtracking from fall quarter of freshman year and had to re-work it out afterwards. In particular, I thought during the interview that the recursive function needed to be able to &quot;undo&quot; state.&lt;/p&gt;&lt;p&gt;Anyways, upon hearing the problem, I decided to implement a solution in Clojure, because&lt;/p&gt;&lt;ol&gt;&lt;li&gt;I'm trying to learn this language&lt;/li&gt;&lt;li&gt;It seemed like a great tool to solve this type of problem cleanly&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;So, I went back to my desk and fired up a new Clojure project and tried to work it out.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;The first thing I did was generate a trie from the words for fast prefix checking as that'll obviously prune the possibilities down quite a bit. This wasn't really in the scope of the interview so I just found an implementation of building tries on &lt;a href='stackoverflow.com/questions/1452680/clojure-how-to-generate-a-trie'&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;ns yang.trie
+  &amp;#40;:gen-class&amp;#41;&amp;#41;
+
+&amp;#40;defn add-to-trie &amp;#91;trie x&amp;#93;
+  &amp;#40;assoc-in trie x &amp;#40;merge &amp;#40;get-in trie x&amp;#41;  
+                          {:val x :terminal true}&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;defn in-trie? &amp;#91;trie x&amp;#93;
+  &amp;quot;Returns true if x exists in the trie&amp;quot;
+  &amp;#40;:terminal &amp;#40;get-in trie x&amp;#41; false&amp;#41;&amp;#41;
+
+&amp;#40;defn has-prefix? &amp;#91;trie prefix&amp;#93;
+  &amp;quot;Returns whether the prefix exists in the trie&amp;quot;
+  &amp;#40;-&amp;gt;&amp;gt; prefix
+       &amp;#40;get-in trie&amp;#41;
+       nil?
+       not&amp;#41;&amp;#41;
+
+&amp;#40;defn prefix-matches &amp;#91;trie prefix&amp;#93;
+  &amp;quot;Returns a list of all words in the trie with the prefix&amp;quot;
+  &amp;#40;-&amp;gt;&amp;gt; prefix
+       &amp;#40;get-in trie&amp;#41;
+       &amp;#40;tree-seq map? vals&amp;#41;
+       &amp;#40;map :val&amp;#41;
+       &amp;#40;remove nil?&amp;#41;&amp;#41;&amp;#41;
+
+&amp;#40;defn build-trie &amp;#91;coll&amp;#93;
+  &amp;quot;Builds a trie over the values in the specified seq coll&amp;quot;
+  &amp;#40;reduce add-to-trie {} coll&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And to actually build the trie:&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn build-lexicon &amp;#91;file&amp;#93;
+  &amp;#40;-&amp;gt; file
+      slurp
+      string/split-lines
+      trie/build-trie&amp;#41;&amp;#41;
+
+&amp;#40;defonce lexicon &amp;#40;build-lexicon &amp;quot;/usr/share/dict/words&amp;quot;&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;Now it's time to start recursive backtracking to find all the solutions (if any). On my first pass at a Clojure solution, I made a couple of bad decisions and made my life difficult.&lt;/p&gt;&lt;p&gt;The problems were two-fold. First of all, I got the wrong idea by choosing the wrong data structure. &lt;strong&gt;This was a HUGE lesson learned: choosing the right data structure, especially in Clojure, is absolutely critical.&lt;/strong&gt; When people say that programming Clojure will make you a better programmer in general, I think this is one of the things they're referring to. I learned that &lt;strong&gt;data is way more important than functions&lt;/strong&gt;, because functions have to do a lot of poop shovelling when the data structure is wrong. (translate: coaxing data back and forth between formats due to poor data structure choice is annoying, introduces a ton of opportunities for bugs, and is not even core to the algorithmic complexity of the problem)&lt;/p&gt;&lt;p&gt;Secondly, I really wasn't familiar enough with the Clojure control structures and data manipulation functions. So I had to spend a lot of time surfing the docs  to try to figure out how to shovel my data around to do what I wanted.&lt;/p&gt;&lt;p&gt;So what was my not-so-bright data structure? I thought it would be convenient to immediately decimate all the &lt;code&gt;&amp;#42;&lt;/code&gt; characters by splitting each string in the vector by &lt;code&gt;&amp;#42;&lt;/code&gt;. Basically,&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;map #&amp;#40;string/split % #&amp;quot;\&amp;#42;&amp;quot;&amp;#41; words&amp;#41;
+;=&amp;gt; &amp;#40;&amp;#91;&amp;quot;t&amp;quot; &amp;quot;itt&amp;quot; &amp;quot;r&amp;quot;&amp;#93; &amp;#91;&amp;quot;&amp;quot; &amp;quot;s&amp;quot;&amp;#93; &amp;#91;&amp;quot;&amp;quot; &amp;quot;wesome&amp;quot;&amp;#93;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt; However, as a beginner in Clojure, dealing with the vectors nested in the list gave me a lot of headaches. Even worse, I also didn't actually know exactly what &lt;code&gt;string/split&lt;/code&gt; did, so when I toiled my way to a first solution and tried to test a case with adjacent &lt;code&gt;&amp;#42;&lt;/code&gt;'s, the output was literally just wrong.&lt;/p&gt;&lt;p&gt;Let's see how bad this was. First, consider the final function I wrote that does the recursive backtracking.&lt;/p&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn solve &amp;#91;words chars-remaining&amp;#93;
+  &amp;quot;words: vector of strings
+  chars-remaining: map from characters to frequencies&amp;quot;
+  &amp;#40;if &amp;#40;solved? words&amp;#41;
+    &amp;#40;apply println words&amp;#41;
+    &amp;#40;doseq &amp;#91;ch &amp;#40;keys chars-remaining&amp;#41;&amp;#93; ;the side effect is the possible println in the recursion
+      &amp;#40;if &amp;#40;is-prefix? words ch&amp;#41;
+        &amp;#40;solve &amp;#40;replace-char words ch&amp;#41;
+               &amp;#40;remove-char chars-remaining ch&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We see that we need:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;code&gt;solved&lt;/code&gt;: a fn to check if the words vector has been solved (updated such that each string it contains is a valid word)&lt;/li&gt;&lt;li&gt;&lt;code&gt;is-prefix?&lt;/code&gt;: a fn to check if inserting a character at the next available &lt;code&gt;&amp;#42;&lt;/code&gt; results in a valid prefix&lt;/li&gt;&lt;li&gt;&lt;code&gt;replace-char&lt;/code&gt;: a fn to actually insert a character at the next available &lt;code&gt;&amp;#42;&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;code&gt;remove-char&lt;/code&gt;: a fn to remove a char from the frequency map of remaining characters&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Besides the fact that it took me awhile to figure out that all I needed for backtracking recursion was the above logical structure (no undo necessary) the hardest part of using the string split data-structure was implementing functions 2 and 3.&lt;/p&gt;&lt;p&gt;As an example of how my code looked when using the wrong datastructure, here's how I tried to do part of fn 3 the first time around. Notice that it doesn't even look for the first instance of a word that has a &lt;code&gt;&amp;#42;&lt;/code&gt;. The function's just trying to replace a &lt;code&gt;&amp;#42;&lt;/code&gt; with a character:&lt;/p&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn stitch &amp;#91;word-frag ch&amp;#93;
+  &amp;#40;if &amp;#40;&amp;gt; &amp;#40;count word-frag&amp;#41; 1&amp;#41;
+    &amp;#40;assoc
+      &amp;#40;-&amp;gt; word-frag rest vec&amp;#41;
+      0
+      &amp;#40;str &amp;#40;word-frag 0&amp;#41; ch &amp;#40;word-frag 1&amp;#41; ; absolutely disgusting
+    word-frag&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Look away, look away. This is absolutely disgusting. The usage of the threading macro (&lt;code&gt;-&amp;gt;&lt;/code&gt;) is pretty cringe-worthy, and the whole thing is a mess. Notice also that there is a lot of &quot;poop shoveling&quot; to be done to &quot;clear out&quot; the first two elements of the word fragment vector and prepend the joined string. (or, as in my implementation above, chop off the first element and replace the second with the joined string). The poor data structure choice just makes life so unclean.&lt;/p&gt;&lt;p&gt;My first bug-ridden implementation has plenty more atrocities, but to spare the reader and save my face, we'll move on to my second pass solution, which is quite clean and quick to write.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;the&amp;#95;clean&amp;#95;solution&quot;&gt;&lt;/a&gt;The Clean Solution&lt;/h3&gt;&lt;p&gt;As discussed, we just need to implement 4 functions to get this algo working. &lt;code&gt;solved?&lt;/code&gt;, &lt;code&gt;is-prefix&lt;/code&gt;, &lt;code&gt;replace-char&lt;/code&gt;, and &lt;code&gt;remove-char&lt;/code&gt;. For the clean solution, I'll just leave the vector of words be, with &lt;code&gt;&amp;#42;&lt;/code&gt;s and all. Here are the functions one by one.&lt;/p&gt;&lt;p&gt;1) &lt;code&gt;solved?&lt;/code&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn- solved? &amp;#91;words&amp;#93;
+  &amp;quot;words: a vector of strings&amp;quot;
+  &amp;#40;-&amp;gt;&amp;gt; words 
+       &amp;#40;map #&amp;#40;trie/in-trie? lexicon %&amp;#41;&amp;#41;
+       &amp;#40;every? true?&amp;#41;&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt; Wowzers that's so much better! I just map the values of the words to a vector of booleans, and return true if every value is true!&lt;/p&gt;&lt;p&gt;2) &lt;code&gt;replace-char&lt;/code&gt; (this is actually required by &lt;code&gt;is-prefix?&lt;/code&gt; so I'll show it first)&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn- replace-char &amp;#91;words ch&amp;#93;
+  &amp;quot;words: a vector of strings
+  ch: a character&amp;quot;
+  &amp;#40;if-let &amp;#91;word-idx &amp;#40;find-word-with-missing words&amp;#41;&amp;#93; ; continue when word-idx not nil
+    &amp;#40;let &amp;#91;word &amp;#40;nth words word-idx&amp;#41;&amp;#93;
+      &amp;#40;assoc words 
+             word-idx
+             &amp;#40;string/replace-first word &amp;quot;&amp;#42;&amp;quot; ch&amp;#41;&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt; Here, we get the index of the word with a missing character (using &lt;code&gt;find-word-with-missing&lt;/code&gt;, which I'll define below), grab that word from the word vector, and replace the &lt;code&gt;&amp;#42;&lt;/code&gt; in that word with &lt;code&gt;ch&lt;/code&gt; using the built-in &lt;code&gt;string/replace-first&lt;/code&gt;. Super simple!&lt;/p&gt;&lt;p&gt;And here's &lt;code&gt;find-word-with-missing&lt;/code&gt;:&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn- find-word-with-missing &amp;#91;words&amp;#93;
+  &amp;quot;words: a vector of strings&amp;quot;
+  &amp;#40;-&amp;gt;&amp;gt; words
+      &amp;#40;util/indices #&amp;#40;util/substring? % &amp;quot;&amp;#42;&amp;quot;&amp;#41;&amp;#41;
+      first&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt; it simply returns the index of the first word that contains &lt;code&gt;&amp;#42;&lt;/code&gt; as a substring. (There are actually 2 additional helper methods used here, which are)&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;; in namespace yang.util
+
+&amp;#40;defn substring? &amp;#91;st sub&amp;#93;
+  &amp;#40;not= &amp;#40;.indexOf st sub&amp;#41; -1&amp;#41;&amp;#41; ;know your Java strings!
+  
+&amp;#40;defn indices &amp;#91;pred coll&amp;#93;
+  &amp;#40;keep-indexed #&amp;#40;when &amp;#40;pred %2&amp;#41; %1&amp;#41; coll&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;3) &lt;code&gt;is-prefix?&lt;/code&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn- is-prefix? &amp;#91;words ch&amp;#93;
+  &amp;quot;words: vector of strings
+  ch: character&amp;quot;
+  &amp;#40;if-let &amp;#91;check-idx &amp;#40;find-word-with-missing words&amp;#41;&amp;#93;
+    &amp;#40;let &amp;#91;replaced-char &amp;#40;replace-char words ch&amp;#41;
+          check-word &amp;#40;str &amp;#40;nth replaced-char check-idx&amp;#41; &amp;quot;&amp;#42;&amp;quot;&amp;#41; ;hack to fix edge case
+          prefix &amp;#40;subs check-word 0 &amp;#40;.indexOf check-word &amp;quot;&amp;#42;&amp;quot;&amp;#41;&amp;#41;&amp;#93;
+      &amp;#40;trie/has-prefix? lexicon prefix&amp;#41;&amp;#41;&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt; This one is probably the hairiest function I have, and it's still quite understandable. In words, what it's doing is after you've already replaced the first &lt;code&gt;&amp;#42;&lt;/code&gt; with a new character, it figures out if the prefix (a substring from the beginning of the word up until the next &lt;code&gt;&amp;#42;&lt;/code&gt; character or the end of the word) is a prefix in the trie.&lt;/p&gt;&lt;p&gt;In code: first, you grab the index of the first word with a missing character. Then, in the &lt;code&gt;let&lt;/code&gt; form, you bind &lt;code&gt;replaced-char&lt;/code&gt; to the vector where you've already inserted the char &lt;code&gt;ch&lt;/code&gt;. Now, you want to get the right prefix, which is all the characters from the beginning up to the next &lt;code&gt;&amp;#42;&lt;/code&gt; or the end of the word. I solved this problem by just appending a &lt;code&gt;&amp;#42;&lt;/code&gt; to the end of the word, so the prefix substring is always correct. Finally, just check if the trie has that prefix. Voila.&lt;/p&gt;&lt;p&gt;4) &lt;code&gt;remove-char&lt;/code&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&amp;#40;defn- remove-char &amp;#91;chars-remaining ch&amp;#93;
+  &amp;quot;chars-remaining: a map from characters to frequencies
+  ch: a character&amp;quot;
+  &amp;#40;let &amp;#91;new-map &amp;#40;update-in chars-remaining &amp;#91;ch&amp;#93; dec&amp;#41;&amp;#93;
+    &amp;#40;if &amp;#40;zero? &amp;#40;new-map ch&amp;#41;&amp;#41;
+      &amp;#40;dissoc new-map ch&amp;#41;
+      new-map&amp;#41;&amp;#41;&amp;#41;
+ &lt;/code&gt;&lt;/pre&gt; This one just removes a character from the bag by decrementing the value of the character's key. It also cleans up the map by removing the key if a character's frequency is 0.&lt;/p&gt;&lt;p&gt;And that's it!&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;Here are the results for a couple of inputs:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;def words &amp;#91;&amp;quot;twi&amp;#42;t&amp;#42;&amp;#42;&amp;quot; &amp;quot;i&amp;#42;&amp;quot; &amp;quot;a&amp;#42;es&amp;#42;&amp;#42;e&amp;quot;&amp;#93;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code class=&quot;no-highlight&quot;&gt;twinter id amesite
+twinter id awesome
+twinter if amesite
+twinter if awesome
+twinter io amesite
+twinter is amesite
+twinter is awesome
+twinter it awesome
+twisted if amesite
+twisted if awesome
+twisted in amesite
+twisted in awesome
+twisted io amesite
+twisted it awesome
+twister id amesite
+twister id awesome
+twister if amesite
+twister if awesome
+twister in amesite
+twister in awesome
+twister io amesite
+twister it awesome
+twistle id amesite
+twistle id awesome
+twistle if amesite
+twistle if awesome
+twistle in amesite
+twistle in awesome
+twistle io amesite
+twistle it awesome
+twitten id awesome
+twitten if awesome
+twitten is awesome
+twitter id awesome
+twitter if awesome
+twitter in awesome
+twitter is awesome
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Check out the last entry of that one :). And another example?&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;#40;def words &amp;#91;&amp;quot;twi&amp;#42;&amp;#42;&amp;#42;&amp;#42;&amp;quot; &amp;quot;i&amp;#42;&amp;quot; &amp;quot;a&amp;#42;es&amp;#42;&amp;#42;e&amp;quot;&amp;#93;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code class=&quot;no-highlight&quot;&gt;twifold ie amesite
+twifold in amesite
+twifold is amesite
+twigful id amesite
+twigful id awesome
+twigful ie amesite
+twigful ie awesome
+twigful in amesite
+twigful in awesome
+twigful io amesite
+twigful is amesite
+twigful is awesome
+twigful it awesome
+twiglet id awesome
+twiglet if awesome
+twiglet in awesome
+twiglet is awesome
+twindle if amesite
+twindle if awesome
+twindle io amesite
+twindle is amesite
+twindle is awesome
+twindle it awesome
+twingle id amesite
+twingle id awesome
+twingle if amesite
+twingle if awesome
+twingle io amesite
+twingle is amesite
+twingle is awesome
+twingle it awesome
+twinkle id amesite
+twinkle id awesome
+twinkle if amesite
+twinkle if awesome
+twinkle io amesite
+twinkle is amesite
+twinkle is awesome
+twinkle it awesome
+twinkly id amesite
+twinkly id awesome
+twinkly ie amesite
+twinkly ie awesome
+twinkly if amesite
+twinkly if awesome
+twinkly io amesite
+twinkly is amesite
+twinkly is awesome
+twinkly it awesome
+twinter id awesome
+twinter if awesome
+twinter is awesome
+twiscar id amesite
+twiscar id awesome
+twiscar ie amesite
+twiscar ie awesome
+twiscar if amesite
+twiscar if awesome
+twiscar in amesite
+twiscar in awesome
+twiscar io amesite
+twiscar it awesome
+twisted if awesome
+twisted in awesome
+twister id awesome
+twister if awesome
+twister in awesome
+twistle id awesome
+twistle if awesome
+twistle in awesome
+twitchy id awesome
+twitchy ie awesome
+twitchy if awesome
+twitchy in awesome
+twitchy is awesome
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Yeah, all those 2 letter thingies are in the Unix dictionary.&lt;/p&gt;&lt;p&gt;And note that &lt;code&gt;twitter&lt;/code&gt; doesn't appear in the second version because we can't repeat usage of &lt;code&gt;t&lt;/code&gt;'s.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;You can find all the code for this on &lt;a href='https://github.com/jiangts/blog/tree/master/code/yang/'&gt;Github&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;I've also been using the &lt;a href='https://github.com/Day8/re-frame'&gt;re-frame&lt;/a&gt; ClojureScript client-side library and I think it's a fantastic idea, so I should be writing a post about that in the near future!&lt;/p&gt;
+</description>
+<pubDate>
+Thu, 06 Aug 2015 00:00:00 -0700
+</pubDate>
+</item>
 <item>
 <guid>
 http://jiangts.github.io/blog/blog/posts/2015-8-1-vim-nodejs-repl.html
