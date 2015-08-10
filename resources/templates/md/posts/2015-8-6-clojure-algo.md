@@ -90,7 +90,7 @@ And to actually build the trie:
   (-> file
       slurp
       string/split-lines
-      trie/build-trie))
+      trie/build-trie)) ; so readable!
 
 (defonce lexicon (build-lexicon "/usr/share/dict/words"))
 ```
@@ -101,14 +101,14 @@ and made my life difficult.
 
 The problems were two-fold. First of all, I got the wrong idea by choosing the
 wrong data structure.
-**This was a HUGE lesson learned: choosing the right data structure, especially in Clojure, is absolutely critical.**
+**This was a huge lesson learned: choosing the right data structure, especially in Clojure, is absolutely critical.**
 When people say that programming Clojure will
 make you a better programmer in general, I think this is one of the things
-they're referring to. I learned that **data is way more important than functions**,
-because functions have to do a lot of poop shovelling when the data structure is wrong.
-(translate: coaxing data back and forth between formats due to poor data
+they're referring to. Clojure really makes you realize that in order to keep your life simple and sane, 
+it's generally the case that **data is more important than functions**.
+That's because coaxing data back and forth between formats due to poor data
 structure choice is annoying, introduces a ton of opportunities for bugs,
-and is not even core to the algorithmic complexity of the problem)
+and is not even core to the algorithmic complexity of the problem.
 
 Secondly, I really wasn't familiar enough with the Clojure control structures
 and data manipulation functions. So I had to spend a lot of time surfing the docs 
@@ -116,7 +116,7 @@ to try to figure out how to shovel my data around to do what I wanted.
 
 So what was my not-so-bright data structure? I thought it would be
 convenient to immediately decimate all the `*` characters by splitting each
-string in the vector by `*`. Basically,
+string in the vector by `*`. In code,
 ```clojure
 (map #(string/split % #"\*") words)
 ;=> (["t" "itt" "r"] ["" "s"] ["" "wesome"])
@@ -168,16 +168,27 @@ trying to replace a `*` with a character:
     word-frag))))
 ```
 
-Look away, look away. This is absolutely disgusting. The usage of the threading
+And here's how I tried to do fn 1:
+```clojure
+(defn solved? [words]
+  (reduce (fn [truth [next-word]] ;at least I used destructuring...
+              (and (trie/in-trie? lexicon next-word) truth)
+          true words)))
+```
+
+Look away, look away. These are absolutely disgusting. The usage of the threading
 macro (`->`) is pretty cringe-worthy, and the whole thing is a mess. Notice also
-that there is a lot of "poop shoveling" to be done to "clear out" the first two
+that there is a lot of poop shovelling to be done to "clear out" the first two
 elements of the word fragment vector and prepend the joined string. (or, as in
 my implementation above, chop off the first element and replace the second with
 the joined string). The poor data structure choice just makes life so unclean.
 
-My first bug-ridden implementation has plenty more atrocities, but to spare the
-reader and save my face, we'll move on to my second pass solution, which is
-quite clean and quick to write.
+The `solved?` function also suffers from the data structure choice. 
+As a side note, using `reduce` there works, but is pretty jank.
+
+My first bug-ridden implementation had plenty more atrocities, but to spare you
+and to save my face, we'll move on to my second pass solution, which is
+quite clean and was quick to write.
 
 <hr>
 
@@ -247,16 +258,16 @@ it simply returns the index of the first word that contains `*` as a substring.
           prefix (subs check-word 0 (.indexOf check-word "*"))]
       (trie/has-prefix? lexicon prefix))))
 ```
-This one is probably the hairiest function I have, and it's still quite
+This one is probably the hairiest function I have, and yet it's still quite
 understandable. In words, what it's doing is after you've already replaced the
 first `*` with a new character, it figures out if the prefix (a substring from
 the beginning of the word up until the next `*` character or the end of the
 word) is a prefix in the trie.
 
-In code: first, you grab the index of the first word with a missing
-character. Then, in the `let` form, you bind `replaced-char` to the vector where
+In code: first, you grab the index of the first word with a missing character (if such a word exists).
+Then, in the `let` form, you bind `replaced-char` to the vector where
 you've already inserted the char `ch`. Now, you want to get the right prefix,
-which is all the characters from the beginning up to the next `*` or the end of
+which is all the characters from the beginning of the word up to the next `*` or the end of
 the word. I solved this problem by just appending a `*` to the end of the word,
 so the prefix substring is always correct. Finally, just check if the trie has
 that prefix. Voila.
@@ -413,10 +424,41 @@ And note that `twitter` doesn't appear in the second version because we can't re
 
 <hr>
 
+Believe it or not, the final code you saw above is nearly what I wrote on the first pass with the 
+simpler data structure! I did very little debugging to get my "first-draft" code to 
+what you've just seen.
+
+The reason is because the code **just reads declaratively**. Really the only bug I encountered was not installing
+the `if-let` forms, because I forgot that `find-word-with-missing` could return `nil`.
+
+And, as a bonus optimization because I'm using Clojure, I memoized (aka cached) the results
+to the `find-word-with-missing` function! What the `memoize` builtin function does is 
+store a map of your function inputs and saves your function output, so if the function
+is computationally expensive or is repeatedly called with the same arguments, it can return
+the cached copy of the output! For obvious reasons, you can only `memoize` functions without side effects.
+
+Here's how that looks:
+```clojure
+(defn- find-word-with-missing-slow [words]
+  "words: vector of strings"
+  (->> words
+      (util/indices #(util/substring? % "*")) ;hard coding missing char...
+      first))
+
+; check clojure docs for cache policies
+(def find-word-with-missing 
+  (memoize find-word-with-missing-slow))
+```
+Super nice. I wish I had this in all languages.
+
+<hr>
+
 You can find all the code for this on [Github][2].
 [2]: https://github.com/jiangts/blog/tree/master/code/yang/
 
 <hr>
+
+### Coming up next
 
 I've also been using the [re-frame](https://github.com/Day8/re-frame)
 ClojureScript client-side library and I think it's a fantastic idea, so I should
