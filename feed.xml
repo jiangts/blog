@@ -15,7 +15,7 @@ http://jiangts.github.io/blog
 
 </description>
 <lastBuildDate>
-Sun, 09 Aug 2015 17:06:43 -0700
+Mon, 07 Sep 2015 13:01:56 -0400
 </lastBuildDate>
 <item>
 <guid>
@@ -254,7 +254,7 @@ twitchy is awesome
  &lt;/code&gt;&lt;/pre&gt; Super nice. I wish I had this in all languages.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;You can find all the code for this on &lt;a href='https://github.com/jiangts/blog/tree/master/code/yang/'&gt;Github&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;coming&amp;#95;up&amp;#95;next&quot;&gt;&lt;/a&gt;Coming up next&lt;/h3&gt;&lt;p&gt;I've also been using the &lt;a href='https://github.com/Day8/re-frame'&gt;re-frame&lt;/a&gt; ClojureScript client-side library and I think it's a fantastic idea, so I should be writing a post about that in the near future!&lt;/p&gt;
 </description>
 <pubDate>
-Thu, 06 Aug 2015 00:00:00 -0700
+Thu, 06 Aug 2015 00:00:00 -0400
 </pubDate>
 </item>
 <item>
@@ -280,7 +280,7 @@ nil
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;li&gt;Try it out!&lt;ul&gt;&lt;li&gt;One last roadblock I encountered was the issue described      &lt;a href='https://github.com/tpope/vim-fireplace/issues/220'&gt;here&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;I fixed it by simply updating to the latest version of fireplace :) (almost      too easy!).&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;I think this is actually the first time I've successfully gotten fireplace to connect to a ClojureScript repl. I remember having some trouble connecting fireplace to the browser repls provided by figwheel/chestnut, so in those environments, I just live reload stuff and observe the output of the web console. Fast enough, but I think this will be even better :).&lt;/p&gt;
 </description>
 <pubDate>
-Sat, 01 Aug 2015 00:00:00 -0700
+Sat, 01 Aug 2015 00:00:00 -0400
 </pubDate>
 </item>
 <item>
@@ -297,7 +297,7 @@ Sophomore Fall
 &lt;p&gt;It's time to choose classes at Stanford!&lt;/p&gt;&lt;p&gt;Unfortunately (fortunately?) there are too many cool CS classes to take at Stanford during the fall. Classes currently on my radar that are only offered fall quarter are:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;CS144 - Networking&lt;ul&gt;&lt;li&gt;in this class you basically learn how the internet works. It's inverted      classroom style, so you watch videos about theory at home and talk about      it in class. Having watched some videos out of curiosity, I can say that      they're really fascinating, and the professors do a great job detailing      the internet, one of the greatest engineering feats of modern technology.      The class is known to be one of the harder(est?) CS classes at Stanford      though, because you literally have to implement a lot of networking      protocols in C. I think the first assignment is writing a TCP server from      a provided bare-bones implementation of a UDP server. -- Really excited to      take this one!&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;CS251 - Bitcoin&lt;ul&gt;&lt;li&gt;This one is taught by Dan Boneh, (one of?) the world's greatest expert(s) on      computer security. I'm taking this one probably half because I want to      take a class with Dan and half because I think bitcoin is interesting      itself as a technology (and I want to know what the fuss is about, as I've      never actually looked into it).&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;CS229 - Machine Learning&lt;ul&gt;&lt;li&gt;This was Andrew Ng's famous class, so I feel somewhat obligated as a      Stanford CS kid to take it.  It's actually known to not be the most      organized class (it had more students than CS106a last fall!) and I hear      some things are brushed over rather quickly, so it's imperative I put in      some extra time on learning the material if I actually want to know it.      But I still think it'll be super cool.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;CS221 - AI&lt;ul&gt;&lt;li&gt;A lot of older CS students told me to take this instead of 229, while others      told me it was a relatively easy class. In any case, I don't have space on      my schedule to take this class because it conflicts with 251, but I'll      definitely keep my ears perked to see what my friends have to say about      it. Who knows, I might even take a look at their problem sets or course      notes from time to time.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;CS131 - Computer Vision&lt;ul&gt;&lt;li&gt;This just sounds cool. Not many of my friends have talked about it, but I      think it would be super interesting. However, not tryna take 4 CS classes      this next quarter so it'll have to wait...&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;CS145 - Databases&lt;ul&gt;&lt;li&gt;I already took a databases class in HS where we talked about 6 normal      forms in relational databases and went over basic queries. We also talked      about NoSQL databases like MongoDB, Riak, HBase, and Neo4J, of which I've      only used PostgreSQL and MongoDB semi-extensively. We also learned about      the CAP theorem and ACID compliance and the pros and cons of various      databases, but at the end of the day it wasn't so rigorous as it was only      a HS class. Hopefully this class will bring some rigor into what I learned      before and teach me new things when I take it next year.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;I'm also looking at taking Social Dance which is one of the most highly demanded classes at Stanford, (aka click enroll at exactly midnight!) and Math110 which is Number Theory. I figured I had to throw a math class in there to keep me thinking rigorously. Also I miss math, as I only took 1 math class last year :(.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;So those are my plans for now, and I'll append an update to this post when I actually finalize my schedule!&lt;/p&gt;
 </description>
 <pubDate>
-Fri, 31 Jul 2015 00:00:00 -0700
+Fri, 31 Jul 2015 00:00:00 -0400
 </pubDate>
 </item>
 <item>
@@ -327,7 +327,7 @@ git subtree push --prefix $1 origin gh-pages
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and in the future you can just run the script and pass in the proper directory!&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;customizing&amp;#95;the&amp;#95;theme&quot;&gt;&lt;/a&gt;Customizing the theme&lt;/h3&gt;&lt;p&gt;I'm a huge fan of David Nolen's talks and his &lt;a href='http://swannodette.github.io'&gt;blog&lt;/a&gt;, and having found another Cryogen &lt;a href='http://blog.jethrokuan.com/'&gt;user&lt;/a&gt;  who was uh, heavily inspired by (stole?) his blog's style, I decided to give it a go as well. The theme looks super simple, which is fitting for any Clojurist :).&lt;/p&gt;&lt;p&gt;The main hurdle I came across was when dealing with Selmer for the first time. Essentially, the issue is that the &quot;tags&quot; button should only be  highlighted when the url is &quot;/blog/tags.html&quot;, and I didn't know how to get the current URL.&lt;/p&gt;&lt;p&gt;After fumbling around for a bit, (ok, like 40 minutes), I finally decided to &quot;be brave&quot; (translate: not be a noob) and  &lt;a href='https://github.com/cryogen-project/cryogen-core/blob/master/src/cryogen&amp;#95;core/compiler.clj'&gt;dig the source&lt;/a&gt; to find what  parameters where exactly being passed to the template. And there it was, &lt;code&gt;uri&lt;/code&gt; (doh!).&lt;/p&gt;&lt;p&gt;So it turns out things are pretty simple. God bless open source :).&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;complaints&amp;#95;about&amp;#95;cryogen&quot;&gt;&lt;/a&gt;Complaints about Cryogen&lt;/h3&gt;&lt;p&gt;It appears that the markdown parser doesn't support the full markdown specification. For example, the horizontal lines had to be created with &lt;code&gt;&amp;lt;hr&amp;gt;&lt;/code&gt; rather than &lt;code&gt;---&lt;/code&gt;. Not a huge deal, but not so nice.&lt;/p&gt;&lt;p&gt;Also, creating a new theme was a bit weird as the structure doesn't follow the provided theme structures.  (to make a new theme I need to have a &lt;code&gt;dosynctemplates&lt;/code&gt; folder in addition to a &lt;code&gt;dosync&lt;/code&gt; folder?).&lt;/p&gt;&lt;p&gt;I'll try to submit some pull requests at some point if time permits...&lt;/p&gt;&lt;p&gt;But otherwise, a pleasant experience.&lt;/p&gt;&lt;p&gt;&lt;hr&gt;&lt;/p&gt;&lt;p&gt;Depending on how life goes, hopefully we'll be seeing more posts on coding, math, life at Stanford etc. in the future!&lt;/p&gt;
 </description>
 <pubDate>
-Thu, 30 Jul 2015 00:00:00 -0700
+Thu, 30 Jul 2015 00:00:00 -0400
 </pubDate>
 </item>
 <item>
@@ -412,7 +412,7 @@ vestibulum tortor est nec nisi.
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Simply set &lt;code&gt;yoursite.com&lt;/code&gt; to the domain of your site in the above configuration and ensure the static content is available at &lt;code&gt;/var/blog/&lt;/code&gt;. Finally, place your custom error page in the &lt;code&gt;/var/blog/404.html&lt;/code&gt; file.&lt;/p&gt;&lt;h2&gt;&lt;a name=&quot;some&amp;#95;sites&amp;#95;made&amp;#95;with&amp;#95;cryogen&quot;&gt;&lt;/a&gt;Some Sites Made With Cryogen&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='http://carmenla.me/blog/index.html'&gt;My personal blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://cryogenweb.org'&gt;Cryogen Documentation Site&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://yogthos.net/'&gt;Yogthos blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://www.clojure.tn'&gt;Clojure :in Tunisia&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://dl1ely.github.io'&gt;dl1ely.github.io&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://jonase.github.io/nil-recur'&gt;nil/recur&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://tangrammer.github.io/'&gt;on the clojure move&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://blog.jethrokuan.com/'&gt;cognizance&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 </description>
 <pubDate>
-Wed, 29 Jul 2015 00:00:00 -0700
+Wed, 29 Jul 2015 00:00:00 -0400
 </pubDate>
 </item>
 </channel>
