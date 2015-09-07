@@ -17,7 +17,7 @@
  :keep-files         [".git"]
  :disqus?            false
  :disqus-shortname   ""
- :ignored-files      [#"\.#.*" #".*\.swp$" #".*\.private\.md" #".*\.staging\.md"]
+ :ignored-files      [#"\.#.*" #".*\.swp$" #".*\.tmp$" #".*\.private\.md" #".*\.staging\.md" #".*\.review\.md"] ; 
  :posts-per-page     5
  :blocks-per-preview 2
  :previews?          false

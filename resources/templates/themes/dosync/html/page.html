@@ -16,7 +16,9 @@
         ||
         {% endif %}
         {% if page.next %}
-        <a href="{{page.next.uri}}">{{page.next.title}} &raquo;</a>
+        <span>
+          <a href="{{page.next.uri}}">{{page.next.title}} &raquo;</a>
+        </span>
         {% endif %}
     </div>
 </div>
