@@ -5,7 +5,7 @@
 http://jiangts.github.io/blogblog/404.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -13,7 +13,7 @@ http://jiangts.github.io/blogblog/404.html
 http://jiangts.github.io/blogblog/archives.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -21,7 +21,7 @@ http://jiangts.github.io/blogblog/archives.html
 http://jiangts.github.io/blogblog/index.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -29,7 +29,7 @@ http://jiangts.github.io/blogblog/index.html
 http://jiangts.github.io/blogblog/pages/about.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -37,7 +37,7 @@ http://jiangts.github.io/blogblog/pages/about.html
 http://jiangts.github.io/blogblog/pages/todo.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -45,7 +45,7 @@ http://jiangts.github.io/blogblog/pages/todo.html
 http://jiangts.github.io/blogblog/posts/2015-7-30-setting-up.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -53,7 +53,7 @@ http://jiangts.github.io/blogblog/posts/2015-7-30-setting-up.html
 http://jiangts.github.io/blogblog/posts/2015-7-31-sophomore-fall.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -61,7 +61,7 @@ http://jiangts.github.io/blogblog/posts/2015-7-31-sophomore-fall.html
 http://jiangts.github.io/blogblog/posts/2015-8-1-vim-nodejs-repl.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -69,7 +69,15 @@ http://jiangts.github.io/blogblog/posts/2015-8-1-vim-nodejs-repl.html
 http://jiangts.github.io/blogblog/posts/2015-8-6-clojure-algo.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
+</lastmod>
+</url>
+<url>
+<loc>
+http://jiangts.github.io/blogblog/posts/2015-9-11-cljs-js-interop.html
+</loc>
+<lastmod>
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -77,7 +85,7 @@ http://jiangts.github.io/blogblog/posts/2015-8-6-clojure-algo.html
 http://jiangts.github.io/blogblog/posts/2015-9-6-zero-to-one.review.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -85,7 +93,7 @@ http://jiangts.github.io/blogblog/posts/2015-9-6-zero-to-one.review.html
 http://jiangts.github.io/blogblog/tags/Clojure.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -93,15 +101,15 @@ http://jiangts.github.io/blogblog/tags/Clojure.html
 http://jiangts.github.io/blogblog/tags/ClojureScript.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
 <loc>
-http://jiangts.github.io/blogblog/tags/mindset.html
+http://jiangts.github.io/blogblog/tags/Mindset.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -109,7 +117,7 @@ http://jiangts.github.io/blogblog/tags/mindset.html
 http://jiangts.github.io/blogblog/tags/Stanford.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 <url>
@@ -117,7 +125,7 @@ http://jiangts.github.io/blogblog/tags/Stanford.html
 http://jiangts.github.io/blogblog/tags.html
 </loc>
 <lastmod>
-2015-09-08
+2015-09-11
 </lastmod>
 </url>
 </urlset>

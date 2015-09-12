@@ -1,6 +1,6 @@
 {:title "On Zero To One (part 1)"
  :layout :post
- :tags  ["mindset"]}
+ :tags  ["Mindset"]}
 
 **Warn: Post in progress**
 
@@ -42,7 +42,7 @@ many would in fact be sympathetic towards, so in reading Zero to One, the reader
 to see a simple premise driven to its logical extreme on the many topics that
 Thiel discusses. The conclusions Thiel draws then lead one to reflect on their
 mindset towards those topics, even if Thiel's conclusions seem extreme at the
-outset. If you are interested Thiel's premise and its implications,
+outset. If you are interested in Thiel's premise and its implications,
 reading this book will do a lot of detailed thinking for you and springboard you
 into a place where you can decide first what you believe about his view-points
 and second what you actually think about his starting premise.
@@ -127,7 +127,7 @@ something with monopolistic character is a far better structure for innovation.
 How is this possible?
 
 In a world of perfect competition, nobody can make a profit &mdash; nobody wins.
-Why? Because everybody single penny earned must be reinvested into the business.
+Why? Because every penny earned must be reinvested into the business.
 Otherwise, your competitors will reinvest in their businesses and you will lose. In perfect
 competition, the only thing you can worry about is the competition, and as a
 result, you become enslaved to staying alive. Money becomes the only thing that
