@@ -12,7 +12,7 @@ This time, we actually did it! We bought a pretty big crab trap for $20 some
 rope to haul in the trap, and some super cheap chicken for bait. Excitement
 level: 8/10.
 
-We head out to a dock on the Pamlico Sound side of OBX that's actually owned by
+We head out to a dock on the sound side of OBX that I think is actually owned by
 a waterfront restaurant (lol). Drop the trap in. Expectations: 10/10.
 
 We were making casual bets on how many crabs we'd have when we hauled the trap
@@ -61,9 +61,10 @@ Parents return, so we check the trap. Still two. Sigh. Oh well, put em in the
 bucket! Slight worry about how to get them out of the trap, but Dad just picked
 them up. Excitement level: 8/10.
 
-We went over to Manteo (on NC's mainland side) to continue crabbing there, as we
-saw some dude catch a crab there earlier in the day. We were also hoping for
-luck as it was already dark outside, and blue crabs should be nocturnal.
+We went over to Manteo (a town on an island between the mainland and OBX) to
+continue crabbing there, as we saw some dude catch a crab there earlier in the
+day. We were also hoping for luck as it was already dark outside, and blue crabs
+should be nocturnal.
 
 We actually couldn't find the pier we wanted to be at in the dark. And in NC, it
 gets really dark (yes, I'm looking at you, California/Bay Area. Too many people,
