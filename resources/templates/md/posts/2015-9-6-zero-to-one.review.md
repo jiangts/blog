@@ -265,6 +265,9 @@ Block out the noise, don't envy other people, and have focus.
 TODO:
 This was probably the hardest chapter to think about...
 
+On design over "speed" or "iteration"
+https://www.youtube.com/watch?v=f84n5oFoZBc
+
 <!-- What is true now that was an over-reaction from the past?
 But you must work for it! It's not gonna come to you for free.
 The premise of going from 0 to 1 is being able to act upon important
