@@ -5,19 +5,34 @@
 (enable-console-print!)
 
 (def fs (js/require "fs-extra"))
-(.readdirSync fs "..")
+(def program (js/require "commander"))
+(def inquirer (js/require "inquirer"))
+
+(defn- today [& args]
+  ((apply juxt args) (t/today)))
 
 (defn- today-str []
-  (let [today (t/today)] 
-    (string/join
-      "-"  
-      (map #(% today) [t/year t/month t/day]))))
+  (string/join "-" (today t/year t/month t/day)))
 
-(today-str)
+(defn- get-options []
+  (-> program
+      (.version "0.0.1")
+      (.option "-p, --peppers" "Add Peppers")
+      (.parse (.-argv js/process))))
+
+(def questions [{:type "confirm"
+                 :name "toBeDelivered",
+                 :message "Is it for a delivery",
+                 :default false}])
 
 (defn -main  [& args]
+  (get-options)
   (println "Hello World")
-  (println "Today is" (today-str)))
+  (println "Today is" (today-str))
+  (-> inquirer
+      (.prompt (clj->js questions) (fn [answers] 
+                                     (let [answers (js->clj answers)]
+                                       (println answers))))))
 
 (set! *main-cli-fn* -main)
 

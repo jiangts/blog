@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>jiangts: Posts Tagged &quot;Mindset&quot;</title>
+        <title>jiangts: Setting up Octave on Mac OSX</title>
         <!-- <script src="//use.typekit.net/hhk0ocl.js"></script> -->
         <script>try{Typekit.load();}catch(e){}</script>
         <link href="../css/normalize.css" rel="stylesheet" type="text/css" />
@@ -37,21 +37,56 @@
                 </nav>
             <div id="content">
                 
-<div id="posts-by-tag">
-    <div id="page-header">
-        <h2>Posts Tagged &quot;Mindset&quot;</h2>
+<div id="post">
+    <div id="post-header">
+    <h2>Setting up Octave on Mac OSX</h2>
+    <div class="date">September 21, 2015</div>
+    <hr>
+</div>
+<div>
+    
+    <p>Wanted to get Octave on my Macintosh because I want to work on CS229 assignments locally (Stanford doesn't give us a license for Matlab, we can only use it on school computers/via ssh on our clusters).</p><p>Turns out Octave installation isn't the easiest thing in the world because it took more than hitting the first couple of links on Google, so here's a record of how I did it on Mac OS X Yosemite.</p><pre><code>$ brew install octave --build-from-source --without-java
+</code></pre><p>You need to specify without java flag because (on Yosemite at least) the homebrew Octave build seems to depend on Java 6 or some weirdness that the Octave homebrew Github issues page people still haven't figured out. https://github.com/Homebrew/homebrew-science/issues/1899</p><p>I won't be needing Java support from Matlab in this class so it's ok. (shrug)</p><p>To get visualization working, follow this blog: http://adampash.com/how-to-install-octave/</p><p>Essentially,</p><pre><code># install octave
+brew install octave --with-x11
+
+# install fltk for gnuplot
+brew install fltk
+
+# install gnuplot &#40;this may be installed as part of octave now&#41;
+brew install gnuplot --with-x11
+</code></pre><p>Evidently, the dude in the blog post suggests getting mactex, but TeX is usually pretty huge so I said "thanks but no thanks".</p><p>Next, make an <code>.octaverc</code> file with</p><pre><code># &#126;/.octaverc
+setenv &#40;&quot;GNUTERM&quot;, &quot;X11&quot;&#41;
+
+# below is optional; changes the prompt to two chevron
+# and gets rid of the long Octave x.x.x &gt;&gt; prompt
+PS1&#40;'&gt;&gt; '&#41;
+</code></pre><p>You should now be gucci. If you aren't, let me know on <a href='https://twitter.com/jiangts'>Twitter</a>.</p>
+</div>
+
+
+<div id="tags">
+    <b>Tags: </b>
+    
+    <a href="/blog/tags/CS229.html">CS229</a>
+    
+</div>
+
+
+    <div id="prev-next">
+        
+        <a href="/blog/posts/2015-10-8-append-only-ledger.html">&laquo; AppendOnlyLedger</a>
+        
+        
+
+        
+        
+        <span class="pull-right"><a href="/blog/posts/2015-9-21-first-day-sophomore.html">Sophomore Classes &raquo;</a></span>
+        
     </div>
-    <ul>
+
     
-        <li>
-            <a href="/blog/posts/2015-9-14-solving-problems.html">Solving Problems</a>
-        </li>
-    
-        <li>
-            <a href="/blog/posts/2015-9-6-zero-to-one.review.html">On Zero To One (part 1)</a>
-        </li>
-    
-    </ul>
+
+
 </div>
 
             </div>

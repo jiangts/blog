@@ -2,7 +2,10 @@
  :layout :post 
  :tags ["Mindset"]}
 
-Inspired by Rich Hickey's ["Hammock Driven Development"](https://www.youtube.com/watch?v=f84n5oFoZBc).
+These are my notes on Rich Hickey's Talk ["Hammock Driven Development"](https://www.youtube.com/watch?v=f84n5oFoZBc).
+It distills his experience in the methodology of coding/problem solving and even psychology.
+
+<hr>
 
 1. State the problem. What are you solving with this software?
 2. Understand the problem.
